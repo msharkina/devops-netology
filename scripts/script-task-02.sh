@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-while ((1==1)) 
+while ((1==0)) 
 do
   curl https://localhost:4757 
   if (($? != 0))

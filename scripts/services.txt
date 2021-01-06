@@ -1,0 +1,5 @@
+{
+    "drive.google.com": "172.217.6.78",
+    "mail.google.com": "172.217.5.101",
+    "google.com": "172.217.164.110"
+}
