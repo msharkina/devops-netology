@@ -4,7 +4,6 @@ from os import popen, getcwd, path
 from sys import argv
 from subprocess import run
 
-
 def checkIsGitRepo(path):
     return run(f'cd {path} && git rev-parse --is-inside-work-tree >/dev/null 2>&1', shell=True).returncode == 0
 
