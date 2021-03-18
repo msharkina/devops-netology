@@ -1,8 +1,3 @@
-# Configure the AWS Provider
-provider "aws" {
-  profile = "default"
-  region  = "us-west-2"
-}
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 data "aws_ami" "ubuntu" {
@@ -20,6 +15,14 @@ data "aws_ami" "ubuntu" {
 
     owners = ["099720109477"] # Canonical
 }
+
+# Configure the AWS Provider
+provider "aws" {
+  profile = "default"
+  region  = "us-west-2"
+}
+
+# Configure the Amazon Machine Image
 resource "aws_instance" "test" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
@@ -29,5 +32,15 @@ resource "aws_instance" "test" {
     }
   tags = {
     Name = "HelloWorld"
+  }
+}
+
+# Create Amazon Simple Storage Service (S3) bucket
+terraform {
+  backend "s3" {
+    bucket         = "tf-test-bucket"
+    key            = "tf-test/terraform.tfstate"
+    region         = data.aws_region.current.id
+    encrypt        = true
   }
 }
