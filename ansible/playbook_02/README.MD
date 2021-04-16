@@ -1,10 +1,11 @@
 # Prerequisites:
-1. Download java and place downloaded archive into `playbook/files/`` directory.
-   Make sure variable variables defined in
-   `/playbook/group_vars/all/vars.yml` matche the archive name and archive version.
+1. Download java and place downloaded archive into `playbook/files/` directory.
+   Make sure variables defined in
+   `/playbook/group_vars/all/vars.yml` match  archive name and archive version.
 2. To be able to test this playbook prepare virtual hosts.
-It uses Docker container `centos-elastic`, this default behavior might be changed in
-`inventory/prod.yml` .
+Play expects Docker container with name `centos-elastic`, this default behavior might be changed in
+`inventory/prod.yml`.
+
 To run docker container execute following commands:
 ```javascript
    docker run -dit --name centos-elastic centos:7
@@ -12,7 +13,8 @@ To run docker container execute following commands:
 ```
 
 # What Play Does:
-This Play would install Java, Elasticsearch and Kibana on your hosts
+This Play would install Java, Elasticsearch and Kibana on your hosts.
+
 Java would be installed into `/opt/jdk/{{ java_jdk_version }}"`
 Version can be specified in `group_vars/all/vars.yml`
 
