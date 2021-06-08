@@ -1,6 +1,7 @@
 node("ansible_docker"){
     stage("Git checkout"){
-        git credentialsId: '62ec7406-2384-4e54-9ce7-d9796e84ba7f', url: 'git@github.com:msharkina/cicd_jenkins.git'
+        git credentialsId: '62ec7406-2384-4e54-9ce7-d9796e84ba7f', url: 'https://github.com/msharkina/devops-netology.git'
+        sh  'cd cicd_jenkins'
     }
     stage("Check ssh key"){
         secret_check=true
