@@ -1,0 +1,32 @@
+node("ansible_docker"){
+    stage("Git checkout"){
+        git credentialsId: '62ec7406-2384-4e54-9ce7-d9796e84ba7f', url: 'git@github.com:msharkina/cicd_jenkins.git'
+    }
+    stage("Check ssh key"){
+        secret_check=true
+    }
+    stage("Install Java role"){
+        if (secret_check){
+        sh 'ansible-galaxy install -r requirements.yml -p roles'
+    }
+    else{
+        echo 'no more keys'
+    }
+    }
+    stage("Check Java role install"){
+        java_check=true
+    }
+    stage("Run playbook"){
+        if (java_check){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+        else{
+            echo 'Java role not installed. Exit.'
+        }
+    }
+    stage('Check version of Java') {
+                dir('/opt/jdk/openjdk-11+28_linux/bin/') {
+                sh 'java -version'
+                }
+            }
+}

@@ -1,0 +1,8 @@
+---
+  # - src: git@github.com:netology-code/mnt-homeworks-ansible.git
+  - src: https://github.com/netology-code/mnt-homeworks-ansible
+    scm: git
+    # version: "1.0.1"
+    version: master
+    name: java
+    key_file: secret
